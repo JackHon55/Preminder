@@ -97,25 +97,54 @@ Public Class Form1
         Label2.Text = lastdate
     End Sub
 
+    Private Function Updated_MedicationList() As List(Of String)
+        Dim list_medicationcurrent As New List(Of String)
 
-    Private Sub WindowClose(sender As Object, e As EventArgs) Handles Me.Closing
         For Each xrow As DataGridViewRow In Med_List.Rows
-            If xrow.Cells(0).Value <> "" Then
-                Medication_Array(xrow.Cells(0).Value).repeat = xrow.Cells(1).Value
-                Medication_Array(xrow.Cells(0).Value).count = xrow.Cells(2).Value.Split("/")(0)
+            If xrow.Cells(0).Value = "" Then
+                Continue For
             End If
-        Next
 
+            list_medicationcurrent.Add(xrow.Cells(0).Value)
+            If Not Medication_Array.Keys.Contains(xrow.Cells(0).Value) Then
+                Try
+                    Dim xname As String = xrow.Cells(0).Value
+                    Dim xcount As Integer = xrow.Cells(2).Value.Split("/")(0)
+                    Dim xmaxcount As Integer = xrow.Cells(2).Value.Split("/")(1)
+                    Dim xrepeat As Integer = xrow.Cells(1).Value
+                    Medication_Array.Add(xname, New Medicine With {.maxcount = xmaxcount, .count = xcount, .repeat = xrepeat})
+                Catch ex As Exception
+                    MessageBox.Show($"{xrow.Cells(0).Value} invalid entry in some of the columns. Preminder will close without saving")
+                    End
+                End Try
+            End If
+
+            Medication_Array(xrow.Cells(0).Value).repeat = xrow.Cells(1).Value
+            Medication_Array(xrow.Cells(0).Value).count = xrow.Cells(2).Value.Split("/")(0)
+        Next
+        Return list_medicationcurrent
+    End Function
+
+    Private Function GenerateLines_toSave() As List(Of String)
+        Dim xlist As List(Of String) = Updated_MedicationList()
         Dim newlines As New List(Of String)
         For i As Integer = 0 To Medication_Array.Count - 1
             Dim xname = Medication_Array.Keys(i)
+            If Not xlist.Contains(xname) Then
+                Continue For
+            End If
+
             Dim xcount = Medication_Array.Values(i).count
             Dim xmaxcount = Medication_Array.Values(i).maxcount
             Dim xrepeat = Medication_Array.Values(i).repeat
 
             newlines.Add($"{xname};{xcount};{xmaxcount};{xrepeat}")
         Next
+        Return newlines
+    End Function
 
+    Private Sub WindowClose(sender As Object, e As EventArgs) Handles Me.Closing
+        Dim newlines As List(Of String) = GenerateLines_toSave()
         File.WriteAllText(savefile, lastdate.ToString & ">" & Medtaken_text.Text & ">" & String.Join("|", newlines))
     End Sub
 End Class
