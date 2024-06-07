@@ -6,7 +6,7 @@ A simple program for tracking all your medications.
 - Remind the user when they should refresh their repeats
 - Remind the user if they have taken specific medications for the day and the quantity
 
-Click to [Download]([https://github.com/JackHon55/Preminder/blob/master/PReminder/bin/Debug/PReminder.exe](https://github.com/JackHon55/Preminder/raw/master/PReminder/bin/Debug/PReminder.exe))
+Click to [Download](https://github.com/JackHon55/Preminder/raw/master/PReminder/bin/Debug/PReminder.exe)
 
 ![image](https://github.com/JackHon55/Preminder/assets/34461676/1a63b3f0-5ded-4968-86eb-49ab45ec17eb)
 
