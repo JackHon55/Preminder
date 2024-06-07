@@ -1,0 +1,7 @@
+Cymbalta;28;28;1
+
+Modavigil;60;60;0
+
+Ephedrine;100;100;1
+
+Metroprolol;200;200;0
