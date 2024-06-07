@@ -1,7 +1,1 @@
-Cymbalta;28;28;1
-
-Modavigil;60;60;0
-
-Ephedrine;100;100;1
-
-Metroprolol;200;200;0
+7/06/2024 00:00:00>Cym>Cymbalta;26;28;1|Modavigil;59;60;0|Ephedrine;99;100;0|Metroprolol;198;200;0
