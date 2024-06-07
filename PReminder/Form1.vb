@@ -27,12 +27,12 @@ Public Class Form1
         exeDirectory = Application.StartupPath
         savefile = exeDirectory & "/Prescriptions.txt"
 
-        If File.Exists(savefile) Then
-            prescription_data = File.ReadAllText(savefile)
-        Else
+        If Not File.Exists(savefile) Then
             ' If file doesn't exist, set last reminder date to current date
             File.WriteAllText(savefile, $"{Date.Today}> >Med1;60;60;5|Med2;20;20;5")
         End If
+
+        prescription_data = File.ReadAllText(savefile)
     End Sub
 
     Private Sub Check_todayActivity()
