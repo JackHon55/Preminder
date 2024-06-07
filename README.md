@@ -20,3 +20,4 @@ Use everyday:
 - Take removes one from the medication
 - Add increases the repeat by 1 (you still need to manually set the counts back to full)
 - If you set Preminder to run at startup, it will act to remind you to take your medication
+- Closing the window saves automatically
