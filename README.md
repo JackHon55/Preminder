@@ -14,7 +14,9 @@ Click to [Download](https://github.com/JackHon55/Preminder/raw/master/PReminder/
 To add medication:
 - Double click on the columns and type away
 - Count column should be in current/total, for example 12/30
+- A .txt fill will be created, called Prescriptions.txt Keep this file at the same folder as Preminder
 
 Use everyday:
 - Take removes one from the medication
 - Add increases the repeat by 1 (you still need to manually set the counts back to full)
+- If you set Preminder to run at startup, it will act to remind you to take your medication
